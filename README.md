@@ -1,4 +1,5 @@
 Link to the site : https://airport-activity-explorer.vercel.app/
+Go to this link and enter an ICAO code eg:"VABB" and get flight data according to the ICAO code.
 
 # Airport Activity Explorer 
 
