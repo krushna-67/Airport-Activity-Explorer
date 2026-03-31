@@ -1,12 +1,18 @@
 <!DOCTYPE html>
-<html lang="en">
+<html>
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
+    <title>Airport Activity Explorer</title>
 </head>
 <body>
-    
+
+    <h2>Airport Activity Explorer</h2>
+
+    <input type="text" id="airportInput" placeholder="Enter Airport ICAO (e.g. VABB)">
+    <button onclick="getAirportData()">Search</button>
+
+    <h3>Results:</h3>
+    <div id="output"></div>
+
     <script src="script.js"></script>
 </body>
 </html>
