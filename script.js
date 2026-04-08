@@ -25,7 +25,9 @@ async function getAirportData() {
     const outputDiv = document.getElementById("output");
     outputDiv.innerHTML = "<p>Loading flight data... this might take a second...</p>";
 
-    const url = `${BASE_URL}?access_key=${API_KEY}&dep_icao=${airportCode}`;
+    const apiUrl = `${BASE_URL}?access_key=${API_KEY}&dep_icao=${airportCode}`;
+    // We use a free proxy (AllOrigins) to prevent CORS and Mixed Content "Failed to fetch" errors.
+    const url = `https://api.allorigins.win/raw?url=${encodeURIComponent(apiUrl)}`;
 
     try {
         console.log("Fetching data from API...");
@@ -59,9 +61,9 @@ function displayData(data) {
 
         div.innerHTML = `
             <p>
-                <strong>Flight Name:</strong> ${flight.flight.iata || "Unknown"} <br>
-                <strong>From:</strong> ${flight.departure.airport || "Unknown"} <br>
-                <strong>To:</strong> ${flight.arrival.airport || "Unknown"} <br>
+                <strong>Flight Name:</strong> ${flight.flight?.iata || "Unknown"} <br>
+                <strong>From:</strong> ${flight.departure?.airport || "Unknown"} <br>
+                <strong>To:</strong> ${flight.arrival?.airport || "Unknown"} <br>
                 <strong>Status:</strong> ${flight.flight_status || "Unknown"}
             </p>
         `;
