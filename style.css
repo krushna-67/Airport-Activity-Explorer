@@ -1,0 +1,45 @@
+/* Real basic styles for now! We will make it pretty later. */
+
+body {
+    font-family: Arial, sans-serif;
+    margin: 20px;
+    background-color: #f9f9f9;
+    color: #333;
+}
+
+header {
+    margin-bottom: 20px;
+}
+
+#search-section {
+    margin-bottom: 20px;
+    padding: 15px;
+    background-color: #fff;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+}
+
+#fun-fact-section {
+    margin-bottom: 20px;
+    padding: 15px;
+    background-color: #e6f7ff;
+    border-left: 4px solid #1890ff;
+    border-radius: 0 5px 5px 0;
+}
+
+#fun-fact-section h3 {
+    margin-top: 0;
+}
+
+/* We will add more styles for the results later */
+.flight-card {
+    background-color: #fff;
+    padding: 10px;
+    border: 1px solid #ddd;
+    border-radius: 5px;
+    margin-bottom: 10px;
+}
+
+.flight-card hr {
+    display: none; /* hiding hr since we have border now */
+}

@@ -1,48 +1,77 @@
-const API_KEY = "c8333f165b173818fc1a6097d5406f81"
-const BASE_URL = `http://api.aviationstack.com/v1/flights`
+const API_KEY = "c8333f165b173818fc1a6097d5406f81";
+const BASE_URL = "http://api.aviationstack.com/v1/flights";
+
+
+const funFacts = [
+    "Did you know? Hartsfield-Jackson Atlanta International Airport is the busiest airport in the world!",
+    "Fun fact: The shortest commercial flight in the world takes only around 90 seconds in Scotland.",
+    "Did you know? Airport runways are numbered based on their magnetic compass heading.",
+    "Fun Fact: Airplane tires are filled with nitrogen instead of regular air so they don't blow up.",
+    "Did you know? The longest commercial flight covers over 9,500 miles and takes nearly 19 hours!"
+];
+
 
 async function getAirportData() {
-    const airportCode = document.getElementById("airportInput").value;
+    const airportCode = document.getElementById("airportInput").value.trim().toUpperCase();
 
     if (!airportCode) {
-        alert("Please enter an airport code");
+        alert("Hey! You need to enter an airport code first!");
         return;
     }
+
+    displayRandomFunFact();
+
+
+    const outputDiv = document.getElementById("output");
+    outputDiv.innerHTML = "<p>Loading flight data... this might take a second...</p>";
 
     const url = `${BASE_URL}?access_key=${API_KEY}&dep_icao=${airportCode}`;
 
     try {
+        console.log("Fetching data from API...");
         const response = await fetch(url);
         const data = await response.json();
-
+        
+        console.log("Got the data:", data);
         displayData(data);
     } catch (error) {
-        console.log("Error fetching data:", error);
+        console.error("Oops! Error fetching data:", error);
+        outputDiv.innerHTML = "<p>Sorry, there was an error getting the flights. Check console.</p>";
     }
 }
 
 function displayData(data) {
     const outputDiv = document.getElementById("output");
-    outputDiv.innerHTML = "";
+    outputDiv.innerHTML = ""; 
 
     if (!data || !data.data || data.data.length === 0) {
-        outputDiv.innerHTML = "No data found";
+        outputDiv.innerHTML = "<p>No flights found for this airport. Are you sure it's correct?</p>";
         return;
     }
 
-    data.data.slice(0, 10).forEach(flight => {
+    for (let i = 0; i < 10; i++) {
+        if (i >= data.data.length) break; 
+
+        const flight = data.data[i];
+        
         const div = document.createElement("div");
+        div.className = "flight-card"; 
 
         div.innerHTML = `
             <p>
-                Flight: ${flight.flight.iata || "N/A"} <br>
-                From: ${flight.departure.airport} <br>
-                To: ${flight.arrival.airport} <br>
-                Status: ${flight.flight_status}
+                <strong>Flight Name:</strong> ${flight.flight.iata || "Unknown"} <br>
+                <strong>From:</strong> ${flight.departure.airport || "Unknown"} <br>
+                <strong>To:</strong> ${flight.arrival.airport || "Unknown"} <br>
+                <strong>Status:</strong> ${flight.flight_status || "Unknown"}
             </p>
-            <hr>
         `;
 
         outputDiv.appendChild(div);
-    });
+    }
+}
+
+function displayRandomFunFact() {
+    const randomIndex = Math.floor(Math.random() * funFacts.length);
+    const factText = funFacts[randomIndex];
+    document.getElementById("funFactDisplay").innerText = factText;
 }

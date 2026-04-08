@@ -1,17 +1,36 @@
 <!DOCTYPE html>
-<html>
+<html lang="en">
 <head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Airport Activity Explorer</title>
+    <link rel="stylesheet" href="style.css">
 </head>
 <body>
 
-    <h2>Airport Activity Explorer</h2>
+    <header>
+        <h1>Airport Activity Explorer</h1>
+        <p>A simple tool to see what's happening at airports around the world!</p>
+    </header>
 
-    <input type="text" id="airportInput" placeholder="Enter Airport ICAO (e.g. VABB)">
-    <button onclick="getAirportData()">Search</button>
+    <main>
+        <section id="search-section">
+            <label for="airportInput">Enter Airport ICAO code:</label>
+            <input type="text" id="airportInput" placeholder="e.g. VABB">
+            <button onclick="getAirportData()">Search Flights</button>
+        </section>
 
-    <h3>Results:</h3>
-    <div id="output"></div>
+        <section id="fun-fact-section">
+            <h3>Did You Know?</h3>
+            <p id="funFactDisplay">Enter an airport to see a fun aviation fact!</p>
+        </section>
+
+        <section id="results-section">
+            <h3>Live Flight Results:</h3>
+            <div id="output">
+            </div>
+        </section>
+    </main>
 
     <script src="script.js"></script>
 </body>
