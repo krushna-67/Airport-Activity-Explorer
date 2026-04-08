@@ -21,13 +21,15 @@ async function getAirportData() {
 
     displayRandomFunFact();
 
-
     const outputDiv = document.getElementById("output");
     outputDiv.innerHTML = "<p>Loading flight data... this might take a second...</p>";
 
-    const apiUrl = `${BASE_URL}?access_key=${API_KEY}&dep_icao=${airportCode}`;
-    // We use a free proxy (AllOrigins) to prevent CORS and Mixed Content "Failed to fetch" errors.
-    const url = `https://api.allorigins.win/raw?url=${encodeURIComponent(apiUrl)}`;
+    // Check if we are running locally (localhost or file path)
+    const isLocal = window.location.hostname === 'localhost' || window.location.hostname === '127.0.0.1' || window.location.protocol === 'file:';
+    
+    // If online, use the secure Vercel proxy. If local, we can use the raw HTTP url!
+    const apiUrl = isLocal ? BASE_URL : "/api/flights";
+    const url = `${apiUrl}?access_key=${API_KEY}&dep_icao=${airportCode}`;
 
     try {
         console.log("Fetching data from API...");

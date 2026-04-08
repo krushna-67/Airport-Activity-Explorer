@@ -1,0 +1,8 @@
+{
+  "rewrites": [
+    {
+      "source": "/api/flights",
+      "destination": "http://api.aviationstack.com/v1/flights"
+    }
+  ]
+}
