@@ -1,6 +1,21 @@
 const API_KEY = "c8333f165b173818fc1a6097d5406f81";
 const BASE_URL = "http://api.aviationstack.com/v1/flights";
 
+// Dictionary to convert common airport names into ICAO codes
+const airportDictionary = {
+    "mumbai": "VABB",
+    "delhi": "VIDP",
+    "london": "EGLL",
+    "new york": "KJFK",
+    "dubai": "OMDB",
+    "tokyo": "RJTT",
+    "paris": "LFPG",
+    "sydney": "YSSY",
+    "singapore": "WSSS",
+    "chicago": "KORD",
+    "frankfurt": "EDDF",
+    "amsterdam": "EHAM"
+};
 
 const funFacts = [
     "Did you know? Hartsfield-Jackson Atlanta International Airport is the busiest airport in the world!",
@@ -12,12 +27,15 @@ const funFacts = [
 
 
 async function getAirportData() {
-    const airportCode = document.getElementById("airportInput").value.trim().toUpperCase();
+    const rawInput = document.getElementById("airportInput").value.trim().toLowerCase();
 
-    if (!airportCode) {
-        alert("Hey! You need to enter an airport code first!");
+    if (!rawInput) {
+        alert("Hey! You need to enter an airport name or code first!");
         return;
     }
+
+    // Lookup the airport name in our dictionary, otherwise assume it's already an ICAO code
+    const airportCode = airportDictionary[rawInput] || rawInput.toUpperCase();
 
     displayRandomFunFact();
 
@@ -78,4 +96,21 @@ function displayRandomFunFact() {
     const randomIndex = Math.floor(Math.random() * funFacts.length);
     const factText = funFacts[randomIndex];
     document.getElementById("funFactDisplay").innerText = factText;
+}
+
+// Allows the user to quickly search through the loaded flights
+function filterFlights() {
+    const filterText = document.getElementById("filterInput").value.toLowerCase();
+    const flightCards = document.getElementsByClassName("flight-card");
+
+    for (let i = 0; i < flightCards.length; i++) {
+        const cardText = flightCards[i].innerText.toLowerCase();
+        
+        // hide or show based on whether the text matches
+        if (cardText.includes(filterText)) {
+            flightCards[i].style.display = "";
+        } else {
+            flightCards[i].style.display = "none";
+        }
+    }
 }

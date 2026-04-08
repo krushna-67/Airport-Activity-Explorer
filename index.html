@@ -15,9 +15,14 @@
 
     <main>
         <section id="search-section">
-            <label for="airportInput">Enter Airport ICAO code:</label>
-            <input type="text" id="airportInput" placeholder="e.g. VABB">
+            <label for="airportInput">Search by Airport Name or Code:</label>
+            <input type="text" id="airportInput" placeholder="e.g. Mumbai, London, or VABB">
             <button onclick="getAirportData()">Search Flights</button>
+        </section>
+
+        <section id="filter-section" style="margin-bottom: 20px; padding: 15px; background-color: #fff; border: 1px solid #ccc; border-radius: 5px;">
+            <label for="filterInput">Filter the results below:</label>
+            <input type="text" id="filterInput" placeholder="e.g. Scheduled, Delhi, IndiGo..." onkeyup="filterFlights()">
         </section>
 
         <section id="fun-fact-section">
