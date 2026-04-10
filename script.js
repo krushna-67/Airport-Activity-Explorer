@@ -37,6 +37,14 @@ async function getAirportData() {
 
     displayRandomFunFact();
 
+    const airplane = document.getElementById("fun-airplane");
+    if(airplane) {
+        airplane.classList.remove("fly-across");
+        // Trigger reflow to restart animation
+        void airplane.offsetWidth;
+        airplane.classList.add("fly-across");
+    }
+
     const outputDiv = document.getElementById("output");
     outputDiv.innerHTML = "<p>Loading flight data... this might take a second...</p>";
 

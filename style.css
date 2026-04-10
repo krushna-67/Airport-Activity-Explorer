@@ -1,45 +1,138 @@
-/* Real basic styles for now! We will make it pretty later. */
+@import url('https://fonts.googleapis.com/css2?family=VT323&display=swap');
 
 body {
-    font-family: Arial, sans-serif;
-    margin: 20px;
-    background-color: #f9f9f9;
-    color: #333;
+    font-family: 'VT323', monospace;
+    margin: 0;
+    padding: 20px;
+    background-color: #0000aa; /* Classic DOS/Win32 blue */
+    color: #ffff55; /* bright yellow */
 }
 
 header {
+    text-align: center;
+    border: 4px double #ffffff;
+    padding: 20px;
     margin-bottom: 20px;
+    background-color: #0000aa;
+    box-shadow: 5px 5px 0px #000000;
 }
 
-#search-section {
-    margin-bottom: 20px;
-    padding: 15px;
-    background-color: #fff;
-    border: 1px solid #ccc;
-    border-radius: 5px;
+h1 {
+    color: #ff55ff; /* bright magenta */
+    text-transform: uppercase;
+    letter-spacing: 3px;
+    margin: 0;
+    font-size: 50px;
+    text-shadow: 3px 3px #000;
 }
 
-#fun-fact-section {
-    margin-bottom: 20px;
-    padding: 15px;
-    background-color: #e6f7ff;
-    border-left: 4px solid #1890ff;
-    border-radius: 0 5px 5px 0;
+header p {
+    font-size: 24px;
+    color: #ffffff;
 }
 
-#fun-fact-section h3 {
+#search-section, #filter-section, #fun-fact-section, #results-section {
+    max-width: 800px;
+    margin: 0 auto 20px auto;
+    padding: 20px;
+    background-color: #000000;
+    border: 2px solid #ffffff;
+    box-shadow: 4px 4px 0px #aaaaaa;
+}
+
+h3 {
     margin-top: 0;
+    color: #55ffff;
+    font-size: 30px;
+    border-bottom: 2px dashed #55ffff;
+    padding-bottom: 5px;
 }
 
-/* We will add more styles for the results later */
-.flight-card {
-    background-color: #fff;
-    padding: 10px;
-    border: 1px solid #ddd;
-    border-radius: 5px;
+label {
+    font-size: 24px;
+    color: #55ff55;
+    display: block;
     margin-bottom: 10px;
 }
 
-.flight-card hr {
-    display: none; /* hiding hr since we have border now */
+label::after {
+    content: '_';
+    animation: blink 1s infinite;
+}
+
+@keyframes blink {
+    0%, 49% { opacity: 1; }
+    50%, 100% { opacity: 0; }
+}
+
+input[type="text"] {
+    background-color: #0000aa;
+    color: #ffffff;
+    border: 2px solid #ffffff;
+    padding: 10px;
+    font-family: 'VT323', monospace;
+    font-size: 22px;
+    width: calc(100% - 24px);
+    margin-bottom: 15px;
+}
+
+input[type="text"]:focus {
+    outline: none;
+    background-color: #000000;
+    border-color: #ff55ff;
+}
+
+button {
+    background-color: #aaaaaa;
+    color: #000000;
+    border: 4px outset #ffffff;
+    padding: 10px 20px;
+    font-family: 'VT323', monospace;
+    font-size: 24px;
+    cursor: pointer;
+    text-transform: uppercase;
+}
+
+button:active {
+    border-style: inset;
+}
+
+marquee {
+    font-size: 26px;
+    color: #ff5555;
+    background-color: #000000;
+    padding: 5px;
+    border: 1px dotted #ff5555;
+}
+
+.flight-card {
+    background-color: #0000aa;
+    padding: 15px;
+    border: 2px solid #55ffff;
+    margin-bottom: 15px;
+}
+
+.flight-card p {
+    margin: 0;
+    font-size: 22px;
+    line-height: 1.4;
+    color: #ffffff;
+}
+
+.flight-card strong {
+    color: #55ff55;
+}
+
+/* Fun airplane feature */
+#fun-airplane {
+    position: fixed;
+    bottom: 20%;
+    left: -150px;
+    font-size: 80px;
+    z-index: 9999;
+    transition: left 4s linear;
+}
+
+.fly-across {
+    left: 120vw !important;
 }
